@@ -1,20 +1,16 @@
 #include <iostream>
-
+#include <fstream>
 using namespace std;
 
 int main()
 {
     int frequency;
     int input;
-    int nb_of_changes;
-
-    cin>>nb_of_changes;
+    ifstream f("date.in");
     frequency = 0;
 
-    while(nb_of_changes){
-        cin>>input;
+    while(f>>input){
         frequency = frequency + input;
-        nb_of_changes--;
     }
 
     cout << frequency;

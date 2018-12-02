@@ -1,0 +1,63 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    string input;
+    string input1[99999];
+    string input2[99999];
+    string result;
+    int poz1;
+    int poz2;
+    int it;
+    int i1;
+    int i;
+    int j;
+    int apcounter;
+    ifstream f("date.in");
+   int    size = 0;
+    while(f>>input){
+       input1[size] = input;
+       input2[size] = input;
+       size++;
+
+    }
+
+    for(i = 0 ; i < size - 1 ; i++)
+     for(j = i+1 ; j< size ;j++){
+       it = 0;
+       apcounter = 0;
+      while(it < input1[i].size())
+        while(it < input2[j].size()){
+            if(input1[i][it] != input2[j][it])
+                 apcounter++;
+        it ++;
+        }
+
+       if(apcounter == 1){
+         poz1 = i;
+         poz2 = j;
+
+       }
+     }
+
+
+     it = 0;
+     int it2=0;
+     while(it < input1[poz1].size()){
+       if(input1[poz1][it] != input2[poz2][it])
+               it++;
+       else{
+           result+=input2[poz2][it];
+            it++;
+          }
+     }
+     cout<<result;
+
+
+
+
+     return 0;
+
+}

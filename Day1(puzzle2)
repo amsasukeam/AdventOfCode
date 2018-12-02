@@ -1,0 +1,52 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+int freq_poz[999999];
+int freq_neg[999999];
+int main()
+{
+    int frequency;
+    int input;
+    int ok;
+    int ko;
+    int transform = 0;
+    ifstream f("date.in");
+    frequency = 0;
+
+    freq_poz[frequency]++;
+    while(1<2){
+
+        f.clear();
+        f.seekg(0, std::ios_base::beg);
+        while(f>>input){
+        frequency = frequency + input;
+        if(frequency > 0){
+            freq_poz[frequency]++;
+        }
+        else{
+            transform = -1 * frequency;
+            freq_neg[transform]++;
+            //cout<<transform<<" ";
+            }
+
+        if(freq_poz[frequency] == 2){
+             ko = 1;
+             cout<<frequency;
+             break;
+        }
+
+        if(freq_neg[transform] == 2){
+            cout<<transform;
+             ok = 1;
+             break;
+        }
+    }
+          if(ok == 1)
+             break;
+          if(ko == 1)
+             break;
+    }
+
+
+return 0;
+    }

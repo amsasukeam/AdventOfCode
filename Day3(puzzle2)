@@ -1,0 +1,180 @@
+#include <iostream>
+#include <fstream>
+#include <string.h>
+using namespace std;
+int matrix[9999][9999];
+int main()
+{
+    string input;
+    int conversion;
+    int height;
+    int width;
+    int distance_left;
+    int distance_top;
+    int id;
+    int i;
+    int j;
+    int counter;
+    int poz;
+    int ok;
+
+    ifstream f("date.in");
+
+    counter = 0;
+    while (getline(f,input))
+    {
+
+    int it=0;
+    while(it<input.size()){
+       conversion = 0;
+       while(input[it] <'0' && input[it] > '9')
+         it++;
+        it++;
+
+       while(input[it]>='0' && input[it]<='9'){
+         conversion = conversion *10 + (input[it]-'0');
+         it++;
+       }
+       id = conversion;
+       conversion = 0;
+       it =it+2;
+       while(input[it] <'0' && input[it] > '9')
+         it++;
+       it++;
+
+       while(input[it]>='0' && input[it]<='9'){
+         conversion = conversion *10 + (input[it]-'0');
+         it++;
+       }
+       distance_left = conversion;
+
+        conversion = 0;
+       while(input[it] <'0' && input[it] > '9')
+         it++;
+       it++;
+
+       while(input[it]>='0' && input[it]<='9'){
+         conversion = conversion *10 + (input[it]-'0');
+         it++;
+       }
+       distance_top= conversion;
+       conversion = 0;
+       while(input[it] <'0' && input[it] > '9')
+         it++;
+         it++;
+         it++;
+
+        while(input[it]>='0' && input[it]<='9'){
+         conversion = conversion *10 + (input[it]-'0');
+         it++;
+       }
+       width = conversion;
+       conversion = 0;
+       while(input[it] <'0' && input[it] > '9')
+         it++;
+         it++;
+        while(input[it]>='0' && input[it]<='9'){
+         conversion = conversion *10 + (input[it]-'0');
+         it++;
+       }
+       height = conversion;
+       break;
+    }
+
+    for(i = 1 + distance_top ; i <= distance_top+height ; i++)
+    for(j = 1 + distance_left; j <=distance_left+width;j++){
+                matrix[i][j]++;
+
+
+    }
+
+}
+
+        f.clear();
+        f.seekg(0, std::ios_base::beg);
+
+while (getline(f,input))
+    {
+     ok = 1;
+    int it=0;
+    while(it<input.size()){
+       conversion = 0;
+       while(input[it] <'0' && input[it] > '9')
+         it++;
+        it++;
+
+       while(input[it]>='0' && input[it]<='9'){
+         conversion = conversion *10 + (input[it]-'0');
+         it++;
+       }
+       id = conversion;
+       conversion = 0;
+       it =it+2;
+       while(input[it] <'0' && input[it] > '9')
+         it++;
+       it++;
+
+       while(input[it]>='0' && input[it]<='9'){
+         conversion = conversion *10 + (input[it]-'0');
+         it++;
+       }
+       distance_left = conversion;
+
+        conversion = 0;
+       while(input[it] <'0' && input[it] > '9')
+         it++;
+       it++;
+
+       while(input[it]>='0' && input[it]<='9'){
+         conversion = conversion *10 + (input[it]-'0');
+         it++;
+       }
+       distance_top= conversion;
+       conversion = 0;
+       while(input[it] <'0' && input[it] > '9')
+         it++;
+         it++;
+         it++;
+
+        while(input[it]>='0' && input[it]<='9'){
+         conversion = conversion *10 + (input[it]-'0');
+         it++;
+       }
+       width = conversion;
+       conversion = 0;
+       while(input[it] <'0' && input[it] > '9')
+         it++;
+         it++;
+        while(input[it]>='0' && input[it]<='9'){
+         conversion = conversion *10 + (input[it]-'0');
+         it++;
+       }
+       height = conversion;
+       break;
+    }
+
+    for(i = 1 + distance_top ; i <= distance_top+height ; i++)
+    for(j = 1 + distance_left; j <=distance_left+width;j++){
+                if (matrix[i][j] != 1)
+                    ok = 0;
+
+
+    }
+    if(ok == 1){
+      poz = id;
+      break;
+    }
+
+}
+
+for(i=1;i<=2000;i++)
+for(j=1;j<=2000;j++)
+    if(matrix[i][j] > 1)
+    counter++;
+ cout<<counter<<" "<<poz;
+
+
+    return 0;
+
+
+}

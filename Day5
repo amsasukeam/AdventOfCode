@@ -1,0 +1,84 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string input;
+    int i;
+    int presup;
+    ifstream f("date.in");
+
+    getline(f,input);
+
+    presup = 1;
+    int j = 0;
+    int min1 = input.size()+1;
+    string aumaifost;
+    char comp;
+    string sir;
+
+    sir = input;
+
+    while(j < sir.size()){
+        input = sir;
+        comp = input[j];
+        presup = 1;
+        for(i = 0; i<aumaifost.size();i++)
+        if(aumaifost[i]>= 65 && aumaifost[i] <= 90){
+          if(aumaifost[i] == comp || aumaifost[i]+32==comp)
+             presup = 0;
+        }
+          else{
+           if(aumaifost[i] - 32==comp || aumaifost[i] == comp)
+            presup = 0;
+
+          }
+        if(presup == 1)
+           aumaifost+=comp;
+         i = 0;
+        if(presup == 1){
+            if(comp >= 65 && comp <=90)
+      while(i < input.size()){
+          if(input[i] == comp || input[i] == comp + 32){
+               input.erase(input.begin()+i, input.begin() + i + 1);
+               i = 0;
+          }
+            i++;
+      }
+      else
+        while(i < input.size()){
+          if(input[i] == comp || input[i] == comp - 32){
+               input.erase(input.begin()+i, input.begin() + i + 1);
+               i = 0;
+          }
+            i++;
+      }
+      i = 0;
+      while(i < input.size()){
+          if(input[i] == input[i+1] + 32 || input[i] == input[i+1] - 32){
+               input.erase(input.begin()+i, input.begin() + i + 2);
+               i = 0;
+          }
+            i++;
+      }
+       int counter = 0;
+    for(i = 0 ; i < input.size();i++)
+        counter++;
+      cout<<" "<<counter<<endl;
+    cout<<counter<<endl;
+        if(counter < min1){
+            min1 = counter;
+        }
+        }
+      j++;
+      }
+      cout<< min1<<endl<<aumaifost;
+      int counter = 0;
+    for(i = 0 ; i < input.size();i++)
+        counter++;
+
+     cout<<endl<<counter;
+    return 0;
+}

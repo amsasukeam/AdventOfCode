@@ -1,0 +1,110 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <bits/stdc++.h>
+using namespace std;
+int guard_id[100000];
+int verf;
+int ok;
+int poz;
+int vector1[61];
+int matrix1[99999][4];
+string date[100000];
+int main()
+{
+    string inputs[1073];
+    string input;
+    int i;
+    int id;
+    ifstream f("Date.in");
+    int size = 0;
+    while(getline(f,input)){
+        inputs[size]=input;
+        size++;
+
+    }
+int z = sizeof(inputs)/sizeof(inputs[0]);
+sort(inputs,inputs+z);
+i = 0;
+int max1 = -1;
+string subst1;
+ int lin = 0;
+
+while(i<size){
+   int convers=0;
+   if(inputs[i][19]=='G'){
+   int  j = 22;
+     while(j<inputs[i].size()){
+        while(inputs[i][j]<'0' && inputs[i][j]>'9')
+          j++;
+          j=j+4;
+          //cout<<inputs[i][j]<<" ";
+          id =0;
+
+        while(inputs[i][j]>='0' && inputs[i][j] <='9'){
+            id = id *10 + (inputs[i][j]-'0');
+            j++;
+        }
+        break;
+        }
+        }
+        i++;
+   while(inputs[i][19] == 'f' && i<size){
+       lin++;
+       convers = 0;
+       matrix1[lin][1] = id;
+     if( inputs[i][19] =='f'){
+        convers = convers*10 + (inputs[i][15]-'0');
+        convers = convers*10 + (inputs[i][16]-'0');
+        matrix1[lin][2] = convers;
+     }
+     convers = 0;
+    if( inputs[i+1][19] =='w'){
+        convers = convers*10 + (inputs[i+1][15]-'0');
+        convers = convers*10 + (inputs[i+1][16]-'0');
+        matrix1[lin][3] = convers;
+    }
+    i = i+2;
+   if(i>size)
+            break;
+
+    }
+   }
+
+
+ cout<<endl;
+int t;
+max1 = -1;
+for(i = 1 ; i <= lin ; i++){
+    if((matrix1[i][3]-matrix1[i][2]) > max1)
+      guard_id[matrix1[i][1]]= guard_id[matrix1[i][1]] + (matrix1[i][3]-matrix1[i][2]);
+
+}
+
+for(i=1;i<=100000;i++)
+  if(guard_id[i]!= 0)
+     if(guard_id[i] > max1){
+        max1=guard_id[i];
+        poz = i;
+
+     }
+     int j;
+for(i = 1 ; i <= lin ; i++){
+    if(matrix1[i][1]==poz){
+      for(j = matrix1[i][2]; j<matrix1[i][3];j++)
+            vector1[j]++;
+    }
+}
+    max1=0;
+    int poz1;
+    for(i = 1 ; i <= 61 ; i++)
+       if(vector1[i]>max1){
+         max1 = vector1[i];
+         poz1=i;
+
+       }
+
+  cout<<poz*poz1;
+    return 0;
+}
+
